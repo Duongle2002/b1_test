@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Student List</h1>
+
+    <!-- Form to add new student -->
+    <form th:action="@{/students}" th:object="${student}" method="post" class="mb-4">
+        <div class="row">
+            <div class="col">
+                <input type="text" th:field="*{name}" class="form-control" placeholder="Họ và Tên" required>
+            </div>
+            <div class="col">
+                <input type="text" th:field="*{className}" class="form-control" placeholder="Lớp" required>
+            </div>
+            <div class="col">
+                <input type="text" th:field="*{group}" class="form-control" placeholder="Nhóm" required>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Add Student</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Student list -->
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>IDSV</th>
+            <th>Họ và Tên</th>
+            <th>Lớp</th>
+            <th>Nhóm</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.className}"></td>
+            <td th:text="${student.group}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
